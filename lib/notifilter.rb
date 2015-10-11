@@ -9,8 +9,12 @@ class Notifilter
     ENV["NOTIFILTER_PORT"] || 8000
   end
 
-  def self.notify(key, data)
-    message = {"identifier" => key, "data" => data}.to_json
+  def self.notify(application, identifier, data)
+    message = {
+      "application" => application,
+      "identifier" => identifier,
+      "data" => data
+    }.to_json
 
     begin
       socket = UDPSocket.new

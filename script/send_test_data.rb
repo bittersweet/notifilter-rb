@@ -7,7 +7,7 @@ jobs = []
   jobs << Thread.new do
     100.times do |i|
       data = { user_id: rand(10), created_at: Time.now }
-      Notifilter.notify("signup", data)
+      Notifilter.notify("test_app", "signup", data)
     end
   end
 end
