@@ -5,8 +5,8 @@ Gem::Specification.new do |gem|
   gem.authors = ["Mark Mulder"]
   gem.email = ["markmulder@gmail.com"]
   gem.description = "Track events and get notified"
-  gem.summary = ""
-  gem.homepage = "github.com/"
+  gem.summary = "Gem to track events into https://github.com/bittersweet/notifilter"
+  gem.homepage = "https://github.com/bittersweet/notifilter-rb"
 
   gem.files = `git ls-files`.split("\n")
   gem.test_files = `git ls-files -- spec/*`.split("\n")
