@@ -2,14 +2,24 @@ require 'socket'
 require 'json'
 
 class Notifilter
+  def self.application
+    ENV["NOTIFILTER_APPLICATION"]
+  end
+
   def self.host
     ENV["NOTIFILTER_HOST"] || "127.0.0.1"
   end
+
   def self.port
     ENV["NOTIFILTER_PORT"] || 8000
   end
 
-  def self.notify(application, identifier, data)
+  def self.notify(identifier, data)
+    if application.nil?
+      puts "[NOTIFILTER] Application is not set, ignoring event"
+      return
+    end
+
     message = {
       "application" => application,
       "identifier" => identifier,
