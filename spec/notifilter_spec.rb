@@ -4,15 +4,14 @@ describe Notifilter do
   around do |spec|
     @server = UDPSocket.new
     @server.bind("127.0.0.1", "8001")
-    ENV["NOTIFILTER_PORT"] = "8001"
-    ENV["NOTIFILTER_APPLICATION"] = "test_app"
     spec.run
     @server.close
   end
 
   it "sends correct message" do
     data = { "id" => 1, "name" => "John Doe", "active" => false }
-    Notifilter.notify("user.created", data)
+    notifilter = Notifilter.new("test_app", "127.0.0.1", "8001")
+    notifilter.notify("user.created", data)
 
     received = @server.recv(1000)
     result = { "application" => "test_app", "identifier" => "user.created", "data" => data }
